@@ -53,6 +53,8 @@ replaced with symlinks, so nothing is lost on first run.
 - Theme: stock Yaru-dark, libadwaita untouched, GNOME's native `slate` accent.
 - Colors: one palette for terminal, editor and accent, derived from Modus
   vivendi-tinted and contrast-verified. See [docs/palette.md](docs/palette.md).
+- Monospace: custom **Iosevka Quiet** build (no ligatures). See
+  [docs/fonts.md](docs/fonts.md). Rebuild with `./scripts/build-iosevka.sh`.
 - Qt: `QT_QPA_PLATFORMTHEME=gtk3` via `libqgtk3`.
 - Electron and Chromium: native Wayland via `ELECTRON_OZONE_PLATFORM_HINT=auto`
   and `snap-flags/brave-flags.conf`.

@@ -1,1 +1,4 @@
 *.pre-dotfiles.*
+*.ttf
+*.otf
+*.woff2

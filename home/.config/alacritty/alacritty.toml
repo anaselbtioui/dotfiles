@@ -2,11 +2,23 @@
 # palette/modus-vivendi-tinted.env; keep in step with the Ghostty config.
 
 [font]
-size = 11.0
+size = 12.0
 
 [font.normal]
-family = "JetBrains Mono"
+family = "Iosevka Quiet"
 style = "Regular"
+
+[font.bold]
+family = "Iosevka Quiet"
+style = "Bold"
+
+[font.italic]
+family = "Iosevka Quiet"
+style = "Italic"
+
+[font.bold_italic]
+family = "Iosevka Quiet"
+style = "Bold Italic"
 
 [window]
 padding = { x = 10, y = 8 }

@@ -92,14 +92,24 @@ def main():
         return 1
 
     wanted = colors(load_palette(PALETTE))
-    existing = settings.get("workbench.colorCustomizations", {})
-    if existing == wanted:
-        print("Cursor colors already match the palette")
+    font = {
+        "editor.fontFamily": "'Iosevka Quiet', 'JetBrains Mono', monospace",
+        "editor.fontLigatures": False,
+        "editor.fontSize": 13,
+        "terminal.integrated.fontFamily": "'Iosevka Quiet', monospace",
+        "terminal.integrated.fontSize": 13,
+    }
+    already = settings.get("workbench.colorCustomizations") == wanted and all(
+        settings.get(k) == v for k, v in font.items()
+    )
+    if already:
+        print("Cursor colors and fonts already match")
         return 0
 
     settings["workbench.colorCustomizations"] = wanted
+    settings.update(font)
     SETTINGS.write_text(json.dumps(settings, indent=4) + "\n")
-    print(f"wrote {len(wanted)} color keys to {SETTINGS}")
+    print(f"wrote {len(wanted)} color keys + Iosevka Quiet fonts to {SETTINGS}")
     return 0
 
 

@@ -45,7 +45,7 @@ done < <(find "$HOME_SRC" -type f -print0)
 section "Typography"
 gsettings set org.gnome.desktop.interface font-name 'Ubuntu Sans 11'
 gsettings set org.gnome.desktop.interface document-font-name 'Ubuntu Sans 11'
-gsettings set org.gnome.desktop.interface monospace-font-name 'JetBrains Mono 11'
+gsettings set org.gnome.desktop.interface monospace-font-name 'Iosevka Quiet 12'
 gsettings set org.gnome.desktop.interface font-hinting 'slight'
 gsettings set org.gnome.desktop.interface font-antialiasing 'grayscale'
 gsettings set org.gnome.desktop.interface text-scaling-factor 1.0
