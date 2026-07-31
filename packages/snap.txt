@@ -1,0 +1,10 @@
+# Snaps in use. Theme snaps are deliberately absent: gtk-theme-colloid and
+# icon-theme-papirus were connected to every snap app while the desktop ran
+# Yaru-dark, which is exactly the inconsistency this setup removes.
+# gtk-common-themes carries Yaru and is pulled in automatically.
+
+brave
+clickup
+firefox
+slack
+thunderbird

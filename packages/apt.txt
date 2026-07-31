@@ -1,0 +1,25 @@
+# Packages this setup depends on. Installed by scripts/root-setup.sh.
+# Lines starting with # are ignored.
+
+# Fonts referenced by home/.config/fontconfig/fonts.conf
+fonts-ubuntu
+fonts-noto-core
+fonts-noto-color-emoji
+fonts-jetbrains-mono
+
+# Stock Ubuntu look, kept instead of any third-party GTK theme
+yaru-theme-gtk
+yaru-theme-icon
+yaru-theme-gnome-shell
+yaru-theme-sound
+
+# Qt apps follow GTK colors, fonts and dialogs via QT_QPA_PLATFORMTHEME=gtk3
+qt6-gtk-platformtheme
+qt5-gtk-platformtheme
+qt6-wayland
+
+# Terminal: GTK4 + libadwaita, so it matches GNOME's own apps
+ghostty
+
+# Convenience
+stow

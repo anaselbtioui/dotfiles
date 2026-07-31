@@ -1,0 +1,47 @@
+# Fallback until Ghostty replaces it. Colors come from
+# palette/modus-vivendi-tinted.env; keep in step with the Ghostty config.
+
+[font]
+size = 11.0
+
+[font.normal]
+family = "JetBrains Mono"
+style = "Regular"
+
+[window]
+padding = { x = 10, y = 8 }
+dynamic_padding = true
+decorations = "full"
+opacity = 1.0
+
+[colors.primary]
+background = "#0d0e1c"
+foreground = "#ffffff"
+
+[colors.cursor]
+cursor = "#b6a0ff"
+text = "#0d0e1c"
+
+[colors.selection]
+background = "#555a66"
+text = "#ffffff"
+
+[colors.normal]
+black = "#000000"
+red = "#ff5f59"
+green = "#44bc44"
+yellow = "#d0bc00"
+blue = "#2fafff"
+magenta = "#feacd0"
+cyan = "#00d3d0"
+white = "#a6a6a6"
+
+[colors.bright]
+black = "#595959"
+red = "#ff6b55"
+green = "#11c777"
+yellow = "#fec43f"
+blue = "#79a8ff"
+magenta = "#b6a0ff"
+cyan = "#6ae4b9"
+white = "#ffffff"

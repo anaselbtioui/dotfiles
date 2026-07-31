@@ -1,0 +1,6 @@
+# Flatpaks (user installation, flathub remote).
+# VLC is Qt but pulls org.kde.WaylandDecoration.QAdwaitaDecorations, so its
+# window decorations match GNOME without any host-side theming.
+
+com.mattjakeman.ExtensionManager
+org.videolan.VLC
