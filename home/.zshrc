@@ -34,3 +34,8 @@ case ":$PATH:" in
 esac
 
 cd ~/_code
+
+# Go
+export PATH="$HOME/.local/go/bin:$PATH"
+export GOPATH="$HOME/go"
+export PATH="$GOPATH/bin:$PATH"

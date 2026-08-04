@@ -81,8 +81,14 @@ lock screen, disable this first.
   worse than none, and per-app color management on Wayland is still thin.
 - **No fractional scaling work.** 1920x1080 at scale 1.0 has no scaling problem
   to solve. `xwayland-native-scaling` is already enabled in Mutter.
-- **No extension pile.** No Blur My Shell; blur costs GPU time on an iGPU and
-  breaks on shell upgrades.
+- **No extension pile.** No Blur My Shell by default — full-shell blur costs GPU
+  time on an iGPU and breaks on upgrades. Acrylic is scoped instead: dock
+  `transparency-mode=FIXED` plus wallpaper grain for shell chrome, and CSS
+  acrylic only on app overlays you control. Never on the editor or terminal
+  body. See [design-system.md](design-system.md).
+- **Quiet design system.** Steal sheet from Apple HIG, Fluent (including acrylic
+  texture), Material roles, and GNOME HIG, mapped onto Modus + Iosevka Quiet.
+  DE shopping (Plasma, COSMIC) is closed; stay on Ubuntu GNOME.
 - **No sound theme work.** Ubuntu barely uses system sounds, so the payoff is
   near zero next to typography and toolkit consistency.
 

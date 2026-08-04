@@ -68,6 +68,15 @@ gsettings set org.gnome.desktop.interface accent-color 'slate'
 gsettings set org.gnome.desktop.interface enable-animations true
 
 section "Desktop surface"
+# COSMIC can leave DCONF_PROFILE pointing at a removed profile, which makes
+# every gsettings write fail until the user session is cleaned.
+if [ "${DCONF_PROFILE:-}" = "/usr/share/dconf/profile/cosmic" ] \
+  && [ ! -f /usr/share/dconf/profile/cosmic ]; then
+  unset DCONF_PROFILE
+  systemctl --user unset-environment DCONF_PROFILE 2>/dev/null || true
+  log "cleared stale DCONF_PROFILE from purged COSMIC session"
+fi
+
 if gsettings list-schemas | grep -qx org.gnome.shell.extensions.ding; then
   gsettings set org.gnome.shell.extensions.ding show-home false
   gsettings set org.gnome.shell.extensions.ding show-trash false
@@ -84,7 +93,9 @@ if gsettings list-schemas | grep -qx org.gnome.shell.extensions.dash-to-dock; th
   gsettings set org.gnome.shell.extensions.dash-to-dock show-trash false
   # Yaru's own dock styling, not a custom theme on top of it.
   gsettings set org.gnome.shell.extensions.dash-to-dock apply-custom-theme false
-  gsettings set org.gnome.shell.extensions.dash-to-dock transparency-mode 'DEFAULT'
+  # FIXED + moderate opacity = light acrylic read on dock chrome only.
+  gsettings set org.gnome.shell.extensions.dash-to-dock transparency-mode 'FIXED'
+  gsettings set org.gnome.shell.extensions.dash-to-dock background-opacity 0.65
 fi
 
 section "Flatpak integration"

@@ -1,0 +1,24 @@
+# Plasma 6 second-session trial. Installed by:
+#   sudo ./scripts/root-setup.sh --plasma
+# Keep gdm3 as the display manager. Do not install kubuntu-desktop or kde-full.
+# Remove with the purge list in docs/plasma-trial.md.
+
+# Meta: pulls plasma-desktop, plasma-workspace, kde-baseapps (Dolphin), etc.
+kde-plasma-desktop
+
+# Wayland session + compositor (not pulled when using --no-install-recommends)
+kwin-wayland
+plasma-session-wayland
+
+# Networking, audio, power, displays
+plasma-nm
+plasma-pa
+powerdevil
+kscreen
+
+# GTK apps inside Plasma follow Breeze instead of looking foreign
+breeze-gtk-theme
+kde-config-gtk-style
+
+# File pickers / screenshots / portal integration for Flatpak and snaps
+xdg-desktop-portal-kde

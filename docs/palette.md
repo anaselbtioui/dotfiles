@@ -3,7 +3,9 @@
 One palette drives every surface: `palette/modus-vivendi-tinted.env`. Values are
 copied verbatim from `modus-themes-vivendi-tinted-palette` in
 [protesilaos/modus-themes](https://github.com/protesilaos/modus-themes), part of
-GNU Emacs.
+GNU Emacs. Quiet role names and CSS variables:
+[`palette/quiet-tokens.css`](../palette/quiet-tokens.css) and
+[design-system.md](design-system.md).
 
 ## Why this one
 

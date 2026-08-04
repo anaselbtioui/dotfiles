@@ -1,0 +1,19 @@
+# COSMIC second-session trial (System76 desktop via unofficial PPA).
+# Installed by:  sudo ./scripts/root-setup.sh --cosmic
+# Removed by:    sudo ./scripts/root-setup.sh --purge-cosmic
+#
+# PPA: ppa:hepp3n/cosmic-epoch (Ubuntu 26.04 / resolute only).
+# May replace Mesa, Wayland/XWayland, LLVM, Rust — purge with ppa-purge.
+# Keep gdm3 as the display manager; do not default to cosmic-greeter.
+
+# Meta / session (install path)
+cosmic-session
+
+# Notable pulls (for documentation and awareness; cosmic-session brings these)
+# cosmic-comp
+# cosmic-files
+# cosmic-term
+# cosmic-settings
+# cosmic-applets
+# cosmic-launcher
+# xdg-desktop-portal-cosmic

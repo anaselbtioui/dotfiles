@@ -1,0 +1,84 @@
+/**
+ * Quiet design system — CSS tokens.
+ * Values mirror palette/modus-vivendi-tinted.env (Modus vivendi-tinted).
+ * Import in app UIs; do not use acrylic recipes on editor/terminal body text.
+ */
+
+:root {
+  /* Canvas / surfaces (Fluent-style roles → Modus keys) */
+  --quiet-bg-canvas: #0d0e1c; /* BG_MAIN */
+  --quiet-bg-surface: #1d2235; /* BG_DIM */
+  --quiet-bg-surface-inactive: #2b3045; /* BG_INACTIVE */
+  --quiet-bg-surface-active: #4a4f69; /* BG_ACTIVE */
+  --quiet-bg-overlay: #14162c; /* BG_POPUP */
+  --quiet-bg-selection: #555a66; /* BG_REGION */
+  --quiet-bg-highlight: #303a6f; /* BG_HL_LINE */
+  --quiet-stroke: #61647a; /* BORDER */
+
+  /* Foreground */
+  --quiet-fg-primary: #ffffff; /* FG_MAIN */
+  --quiet-fg-secondary: #989898; /* FG_DIM */
+  --quiet-fg-accent: #c6daff; /* FG_ALT */
+  --quiet-fg-link: #2fafff; /* STATE_INFO */
+  --quiet-cursor: #b6a0ff;
+
+  /* Semantic (color only when it means something) */
+  --quiet-fg-danger: #ff5f59;
+  --quiet-fg-warning: #d0bc00;
+  --quiet-fg-success: #44bc44;
+  --quiet-fg-info: #2fafff;
+
+  /* State layers (Fluent): multiply over surface, not new hues */
+  --quiet-state-hover: rgba(255, 255, 255, 0.06);
+  --quiet-state-press: rgba(255, 255, 255, 0.1);
+  --quiet-state-disabled: 0.4;
+
+  /* Acrylic chrome (app overlays only — not code/canvas) */
+  --quiet-acrylic-blur: 20px;
+  --quiet-acrylic-saturate: 1.2;
+  --quiet-acrylic-tint-surface: rgba(29, 34, 53, 0.78); /* BG_DIM @ ~0.78 */
+  --quiet-acrylic-tint-overlay: rgba(20, 22, 44, 0.82); /* BG_POPUP @ ~0.82 */
+  --quiet-acrylic-noise-opacity: 0.04;
+
+  /* Type */
+  --quiet-font-ui: "Ubuntu Sans", "Noto Sans", system-ui, sans-serif;
+  --quiet-font-mono: "Iosevka Quiet", "JetBrains Mono", ui-monospace, monospace;
+  --quiet-font-size-ui: 11px;
+  --quiet-font-size-mono: 12px;
+
+  /* Motion (Apple orientation + skill: no bounce) */
+  --quiet-ease: cubic-bezier(0.2, 0, 0, 1);
+  --quiet-duration: 180ms;
+
+  /* Density */
+  --quiet-hit-min: 40px;
+  --quiet-radius-sm: 6px;
+  --quiet-radius-md: 10px;
+  --quiet-radius-lg: 14px; /* outer ≈ inner + padding when nesting */
+}
+
+/**
+ * Fluent-like acrylic panel for app chrome (sidebars, floating panels).
+ * Requires a backdrop behind the element. Keep text contrast AA+.
+ */
+.quiet-acrylic {
+  position: relative;
+  background: var(--quiet-acrylic-tint-overlay);
+  backdrop-filter: blur(var(--quiet-acrylic-blur)) saturate(var(--quiet-acrylic-saturate));
+  -webkit-backdrop-filter: blur(var(--quiet-acrylic-blur))
+    saturate(var(--quiet-acrylic-saturate));
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset,
+    0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.quiet-acrylic::before {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: var(--quiet-acrylic-noise-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 128px 128px;
+  mix-blend-mode: overlay;
+}
