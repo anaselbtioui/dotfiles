@@ -1,5 +1,5 @@
-font-family = Iosevka Quiet
-font-size = 12
+font-family = JetBrains Mono
+font-size = 16
 adjust-cell-height = 10%
 
 # Colors come from palette/modus-vivendi-tinted.env, verified by
