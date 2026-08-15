@@ -40,7 +40,7 @@ while IFS= read -r -d '' src; do
   fi
   ln -sfn "$src" "$dest"
   log "linked $rel"
-done < <(find "$HOME_SRC" -type f -print0)
+done < <(find "$HOME_SRC" -type f ! -path '*/__pycache__/*' ! -name '*.pyc' -print0)
 
 section "Typography"
 gsettings set org.gnome.desktop.interface font-name 'Ubuntu Sans 11'

@@ -1,0 +1,45 @@
+# Sway second-session trial. Installed by:
+#   sudo ./scripts/root-setup.sh --sway
+# Keep gdm3 as the display manager. Do not replace GNOME.
+# Remove with: sudo ./scripts/root-setup.sh --purge-sway
+#
+# Configs live under home/.config/{sway,waybar,mako,swaylock}/ and are
+# linked by ./bootstrap.sh. Colors come from palette/modus-vivendi-tinted.env.
+
+# Compositor + session (pulls a wayland-sessions/sway.desktop for GDM)
+sway
+
+# Lock, idle, notifications, bar — the pieces GNOME bundled
+swaylock
+swayidle
+mako-notifier
+waybar
+
+# Upstream sway 1.11 launcher kept as fallback. Daily launcher is fuzzel.
+wmenu
+fuzzel
+
+# Clipboard history (Windows Win+V analogue): watcher + picker via fuzzel
+wl-clipboard
+cliphist
+
+# Screenshots → clipboard (grim stdout | wl-copy). Super+Shift+s region, Shift+Print full.
+grim
+slurp
+brightnessctl
+playerctl
+
+# Auth dialogs (pkexec, GNOME's agent — Sway has no built-in)
+policykit-1-gnome
+
+# Live wallpaper: slow Modus breath via gtk-layer-shell (no swww/mpvpaper in Ubuntu).
+python3-gi
+python3-gi-cairo
+python3-cairo
+gir1.2-gtk-3.0
+gir1.2-gtklayershell-0.1
+libgtk-layer-shell0
+
+# Portals: screencast/screenshot + GTK file chooser for Flatpak/Electron
+xdg-desktop-portal-wlr
+xdg-desktop-portal-gtk

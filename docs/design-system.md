@@ -1,7 +1,8 @@
 # Quiet design system
 
-Canon for this machine and for apps you control. Stay on **Ubuntu GNOME**. No
-new desktop environment. Core color is
+Canon for this machine and for apps you control. Daily driver stays
+**Ubuntu GNOME**. Sway is an optional second GDM session (open trial) —
+[sway-trial.md](sway-trial.md) — not a replacement DE. Core color is
 [`palette/modus-vivendi-tinted.env`](../palette/modus-vivendi-tinted.env).
 Machine-readable CSS: [`palette/quiet-tokens.css`](../palette/quiet-tokens.css).
 
@@ -116,7 +117,8 @@ there.
 ### Wallpaper rule
 
 Low-noise, muted, supports acrylic read. No anime, no RGB gradients, no busy
-photos that turn dock translucency into mud.
+photos that turn dock translucency into mud. Sway trial: slow Modus breath
+(`quiet-live-bg.py`), not a video/mpvpaper rice.
 
 ## Desktop wiring (this repo)
 
@@ -127,12 +129,13 @@ photos that turn dock translucency into mud.
 
 ## Explicitly not stealing / not building
 
-- New compositor or custom DE
+- Hyprland, Omarchy, or a custom DE
 - System-wide Blur My Shell as default
 - Material You / wallust palette generation
 - Restyling libadwaita widgets
 - Acrylic on Cursor editor canvas
 - Plasma / COSMIC as daily drivers (tried; rejected — purge scripts remain)
+- Sway as daily driver until the second-session trial sticks or is rejected
 
 ## Provenance
 
@@ -145,4 +148,5 @@ photos that turn dock translucency into mud.
 | Concentric radius, press scale, no bounce, text-wrap | make-interfaces-feel-better skill |
 | Palette doctrine (AAA, few hues) | Prot’s Modus themes (vivendi-tinted) |
 
-DE shopping is closed. See [rationale.md](rationale.md).
+Plasma and COSMIC shopping is closed. Sway is the remaining compositor
+trial. See [rationale.md](rationale.md) and [sway-trial.md](sway-trial.md).

@@ -50,6 +50,8 @@ Current results against the `#0d0e1c` background:
 | Alacritty | `home/.config/alacritty/alacritty.toml`, identical values |
 | Cursor editor and its integrated terminal | `scripts/apply-cursor-palette.py`, merged into `workbench.colorCustomizations` |
 | GNOME accent | `slate`, set by `bootstrap.sh` |
+| Sway (trial) | `home/.config/sway/config` canvas and client colors |
+| Waybar / mako / swaylock | matching surface, overlay, border, and semantic states |
 
 Cursor's settings are edited in place rather than symlinked, because Cursor saves
 atomically and would replace a symlink with a regular file. The script merges

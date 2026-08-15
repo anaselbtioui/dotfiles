@@ -88,7 +88,8 @@ lock screen, disable this first.
   body. See [design-system.md](design-system.md).
 - **Quiet design system.** Steal sheet from Apple HIG, Fluent (including acrylic
   texture), Material roles, and GNOME HIG, mapped onto Modus + Iosevka Quiet.
-  DE shopping (Plasma, COSMIC) is closed; stay on Ubuntu GNOME.
+  DE shopping (Plasma, COSMIC) is closed; stay on Ubuntu GNOME. Sway is an
+  open second-session trial, not the daily driver — see docs/sway-trial.md.
 - **No sound theme work.** Ubuntu barely uses system sounds, so the payoff is
   near zero next to typography and toolkit consistency.
 

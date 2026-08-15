@@ -13,6 +13,8 @@ INSTALL_PLASMA=0
 PURGE_PLASMA=0
 INSTALL_COSMIC=0
 PURGE_COSMIC=0
+INSTALL_SWAY=0
+PURGE_SWAY=0
 for arg in "$@"; do
   case "$arg" in
     --drop-alacritty) DROP_ALACRITTY=1 ;;
@@ -20,6 +22,8 @@ for arg in "$@"; do
     --purge-plasma) PURGE_PLASMA=1 ;;
     --cosmic) INSTALL_COSMIC=1 ;;
     --purge-cosmic) PURGE_COSMIC=1 ;;
+    --sway) INSTALL_SWAY=1 ;;
+    --purge-sway) PURGE_SWAY=1 ;;
     -h|--help)
       cat <<'EOF'
 Usage: sudo ./scripts/root-setup.sh [flags]
@@ -29,6 +33,8 @@ Usage: sudo ./scripts/root-setup.sh [flags]
   --purge-plasma     Remove the Plasma trial packages and autoremove.
   --cosmic           Install COSMIC via ppa:hepp3n/cosmic-epoch (keeps gdm3).
   --purge-cosmic     ppa-purge the COSMIC PPA and restore Ubuntu packages.
+  --sway             Install Sway as a second GDM session (keeps gdm3).
+  --purge-sway       Remove the Sway trial packages and autoremove.
 EOF
       exit 0 ;;
     *) echo "unknown argument: $arg" >&2; exit 2 ;;
@@ -167,6 +173,43 @@ if [ "$INSTALL_COSMIC" = 1 ]; then
   fi
 fi
 
+if [ "$INSTALL_SWAY" = 1 ]; then
+  section "Sway second session (keep gdm3)"
+  echo 'gdm3 shared/default-x-display-manager select gdm3' | debconf-set-selections
+  install_from_list "$REPO/packages/sway.txt"
+
+  if [ -f /usr/share/wayland-sessions/sway.desktop ]; then
+    log "Sway Wayland session desktop file present:"
+    ls /usr/share/wayland-sessions/sway.desktop | sed 's/^/   /'
+  else
+    log "WARNING: no sway.desktop under /usr/share/wayland-sessions/"
+    ls /usr/share/wayland-sessions/ 2>/dev/null | sed 's/^/   /'
+  fi
+
+  dm="$(cat /etc/X11/default-display-manager 2>/dev/null || true)"
+  if echo "$dm" | grep -q gdm; then
+    log "default display manager: $dm"
+  else
+    log "WARNING: default DM is '$dm' — expected gdm3. Fix with: sudo dpkg-reconfigure gdm3"
+  fi
+fi
+
+if [ "$PURGE_SWAY" = 1 ]; then
+  section "Purging Sway trial"
+  mapfile -t SWAY_PKGS < <(grep -vE '^\s*(#|$)' "$REPO/packages/sway.txt")
+  DEBIAN_FRONTEND=noninteractive apt-get purge -y "${SWAY_PKGS[@]}"
+  apt-get autoremove --purge -y
+  echo 'gdm3 shared/default-x-display-manager select gdm3' | debconf-set-selections
+  DEBIAN_FRONTEND=noninteractive dpkg-reconfigure gdm3 >/dev/null 2>&1 || true
+  if [ -e /usr/share/wayland-sessions/sway.desktop ]; then
+    log "WARNING: sway.desktop still present"
+  else
+    log "Sway session removed from GDM"
+  fi
+  dm="$(cat /etc/X11/default-display-manager 2>/dev/null || true)"
+  log "default display manager: $dm"
+fi
+
 if [ "$PURGE_COSMIC" = 1 ]; then
   section "Purging COSMIC trial (ppa-purge)"
   echo 'gdm3 shared/default-x-display-manager select gdm3' | debconf-set-selections
@@ -234,6 +277,13 @@ elif [ "$INSTALL_PLASMA" = 1 ]; then
 elif [ "$PURGE_PLASMA" = 1 ]; then
   printf '\nPlasma purged. Stay on Ubuntu at GDM. Optional home cleanup:\n'
   printf '  rm -rf ~/.config/plasma* ~/.config/kwinrc ~/.config/kdeglobals ~/.config/dolphinrc ~/.local/share/kscreen\n'
+elif [ "$INSTALL_SWAY" = 1 ]; then
+  printf '\nSway ready. Log out, pick Sway at GDM. Then as your user:\n'
+  printf '  ./bootstrap.sh\n'
+  printf 'Hate it:  sudo ./scripts/root-setup.sh --purge-sway\n'
+elif [ "$PURGE_SWAY" = 1 ]; then
+  printf '\nSway purged. Stay on Ubuntu at GDM.\n'
+  printf 'Configs in this repo are unchanged; they sit idle without the packages.\n'
 else
   printf '\nDone. Log out and back in.\n'
 fi
